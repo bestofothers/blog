@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>{% block title %}Michael Okoloba's Blog{% endblock%}</title> 
+    {% load staticfiles %}
+    {% recent_post %}
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/css/styles.css'%}" media="screen"/>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+</head>
+    <body>
+        <div style="background-color: #f9f9f9; ">
+        <div id="container" class="row"><!-- Start of main container-->
+
+                <header id="main_header" class="span9"> <!-- Begin Header -->
+                    <img src="{% static 'posts/images/okoloba.png' %}" alt="Okoloba" />
+                    <img class="top_image" alt="Michael" src="{% static 'posts/images/michael.png' %}" />
+                    <div id="social_container">
+                        <img class="social" alt="Facebook" src="{% static 'posts/images/facebook.png' %}" />
+                        <img class="social" alt="Twitter" src="{% static 'posts/images/twitter.png' %}" />
+                    </div>
+                    
+                    <nav id="">
+                        <img class="progress" alt="I'm a work in progress..." src="{% static 'posts/images/progress.png' %}" />
+
+                        <ul class="nav nav-tabs custom_menu">
+                            <li role="presentation" class="active"><a href="{% url 'posts:index' %}">Blog</a></li>
+                            <li role="presentation"><a href="#">About Me</a></li>
+                            <li role="presentation"><a href="#">Projects</a></li>
+                            <li role="presentation"><a href="#">Contacts</a></li>
+                        </ul>
+                        <div class="input-group input-group-sm searchbox">
+                            <span class="input-group-addon" id="sizing-addon3"><span class="glyphicon glyphicon-search"></span></span>
+                            <input type="text" class="form-control" placeholder="Search..." aria-describedby="sizing-addon3">
+                        </div>
+                    </nav>
+                </header><!-- End Header -->
+
+                <div class="top_gap"><!-- Begin Banner -->
+                <img src="{% static 'posts/images/banner1.jpg' %}" % />
+                </div><!-- End Banner -->
+
+                <div class="main_wrapper row">  <!-- Main Wrapper begins -->
+
+                    <div class="main_left span6">
+
+                        {% block article %}
+
+                        
+                        {% endblock %}
+
+                    </div>
+                    
+                    <div class="main_right span3"><!-- Categories content starts -->
+                        <section>
+                            <header>
+                                <h3 class="article_title"><a href="{% url 'posts:all_categories' %}">All Categories</a></h3>
+                            </header>
+                            <ul class="list-unstyled">
+                                {% for category in categories %}
+                                    {% if category.post_set.count > 0 %}
+                                        <li>{{ category.category_name}}</li>
+                                    {% endif%}
+                                {% endfor %}
+                            </ul>
+                        </section>
+
+                        <section>
+                            <header>
+                                <h3 class="article_title"><a href="#">Recent Posts</a></h3>
+                            </header>
+                            <ul class="list-unstyled">
+                                <ul>
+
+                                {% for post in latest_posts %}
+                                    <li> {{ post }} </li>
+                                {% endfor %}
+                                </ul>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <header>
+                                <h3 class="article_title"><a href="#">Popular Posts</a></h3>
+                            </header>
+                            <ul class="list-unstyled">
+                                <li>Preventing SQL Injection</li>
+                                <li>Social Engineering Prevention</li>
+                            </ul>
+                        </section>
+                    </div> <!-- Categories end -->
+
+                </div><!-- Main Wrapper ends -->
+            
+            <footer>
+                <p>Copyright &copy; 2015 Michael Okoloba - Software Engineer. All rights reserved. Built using Django Framework</p>
+            </footer>
+        </div> <!-- End of main container-->
+    </body>
+</html>

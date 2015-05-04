@@ -1,0 +1,46 @@
+{% extends "posts/base.html" %}
+
+    {% block title %}Michael Okoloba's Home{% endblock%}
+    {% block article %}
+    
+    {% if posts %}
+        {% for post in posts %}
+            <section class="article_content">  <!-- Article content section begin --> 
+                
+                <header class="article_header">
+                <h6 class="date">{{post.created_at}}
+                    <span class="category"> {{post.category}} - </span>
+                    <span class="comments"> comments: {{post.comment_set.count}}</span>
+                </h6>
+                <h1 class="article_title"><a href="{% url 'posts:post' post.id %}">{{post.title}}</a></h1>
+            </header>
+                <p> 
+                    {{post.body|safe}}
+                </p>
+                <h1 class="button"><a href="{% url 'posts:post' post.id %}">Read More</a></h1>
+
+            </section> <!-- Article content end -->
+        {% endfor %}
+
+        {% if is_paginated %}
+            <ul class="pagination nav navbar-nav">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}">Prev</a></li>
+                {% endif %}
+                {% for page in page_obj.paginator.page_range %}
+                <li class="{% if page_obj.number == page  %}active{% endif %}"><a href="?page={{page }}">{{ page }}</a></li>
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li> <a href="?page={{ page_obj.next_page_number }}">Next</a></li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    
+    {% endif %}
+
+    {% endblock %}
+                   
+
+
+
