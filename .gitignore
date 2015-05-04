@@ -10,5 +10,5 @@ parts
 src/*.egg-info
 lib
 lib64
-mikes_blog/settings.py
+/mikes_blog/settings.py
 .DS_Store
