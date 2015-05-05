@@ -8,16 +8,16 @@
             <section class="article_content">  <!-- Article content section begin --> 
                 
                 <header class="article_header">
-                <h6 class="date">{{post.created_at}}
-                    <span class="category"> {{post.category}} - </span>
+                <h6 class="date">{{post.created_at.date}}
+                    <span class="category"> &mdash; <a href="{% url 'posts:category' post.category.slug %}">{{post.category}}</a> &mdash; </span>
                     <span class="comments"> comments: {{post.comment_set.count}}</span>
                 </h6>
-                <h1 class="article_title"><a href="{% url 'posts:post' post.id %}">{{post.title}}</a></h1>
+                <h1 class="article_title"><a href="{% url 'posts:post' post.slug %}">{{post.title}}</a></h1>
             </header>
                 <p> 
                     {{post.body|safe}}
                 </p>
-                <h1 class="button"><a href="{% url 'posts:post' post.id %}">Read More</a></h1>
+                <h1 class="button"><a href="{% url 'posts:post' post.slug %}">Read More</a></h1>
 
             </section> <!-- Article content end -->
         {% endfor %}

@@ -1,5 +1,5 @@
-<ul>
+<ul class="list-unstyled">
 {% for post in latest_posts %}
-    <li> {{ post }} </li>
+    <li><a href="{% url 'posts:post' post.slug %}"> {{ post }} </a></li>
 {% endfor %}
 </ul>

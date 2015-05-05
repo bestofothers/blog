@@ -63,7 +63,7 @@
                             <ul class="list-unstyled">
                                 {% for category in categories %}
                                     {% if category.post_set.count > 0 %}
-                                        <li>{{ category.category_name}}</li>
+                                        <li><a href="{% url 'posts:category' category.slug %}">{{ category.category_name}}</a></li>
                                     {% endif%}
                                 {% endfor %}
                             </ul>
@@ -73,11 +73,7 @@
                             <header>
                                 <h3 class="article_title"><a href="#">Recent Posts</a></h3>
                             </header>
-                            <ul class="list-unstyled">
                                 {% recent_post %}
-
-                             
-                            </ul>
                         </section>
 
                         <section>

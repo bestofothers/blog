@@ -3,9 +3,6 @@ from django.shortcuts import render
 from .models import Post, Comment, Category, Reply
 from django.views import generic
 
-from django import template
-register = template.Library()
-
 class IndexView(generic.ListView):
     template_name = 'posts/index.html'
     context_object_name = 'posts'
@@ -28,8 +25,12 @@ class PostView(generic.DetailView):
         context['categories'] = Category.objects.all()
         return context
 
-
-class CategoryView(generic.ListView):
+class CategoriesView(generic.ListView):
     template_name = 'posts/base.html'
     context_object_name = 'categories'
     model = Category
+
+class CategoryView(generic.ListView):
+    template_name = 'posts/category.html'
+    model = Post
+    context_object_name = 'category'
