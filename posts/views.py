@@ -18,7 +18,7 @@ class IndexView(generic.ListView):
         context['categories'] = Category.objects.all()
         return context
 
-register.inclusion_tag('posts/base.html')
+@register.inclusion_tag('posts/base.html')
 def recent_post():
     latest_posts = Post.objects.all().order_by('-id')[1:2]
     return {'latest_posts': latest_posts}
