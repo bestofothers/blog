@@ -14,3 +14,4 @@ posts/*.pyc
 mikes_blog/settings.py
 mikes_blog/*.pyc
 .DS_Store
+.gitignore
