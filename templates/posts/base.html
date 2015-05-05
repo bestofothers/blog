@@ -74,12 +74,9 @@
                                 <h3 class="article_title"><a href="#">Recent Posts</a></h3>
                             </header>
                             <ul class="list-unstyled">
-                                <ul>
+                                {% recent_post %}
 
-                                {% for post in latest_posts %}
-                                    <li> {{ post }} </li>
-                                {% endfor %}
-                                </ul>
+                             
                             </ul>
                         </section>
 

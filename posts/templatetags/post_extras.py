@@ -1,6 +1,6 @@
 from django import template
 register = template.Library()
-
+from ..models import Post 
 
 @register.inclusion_tag('posts/recent_post.html')
 def recent_post():
